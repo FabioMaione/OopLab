@@ -13,7 +13,22 @@ Se non sono presenti mobili, restituire -1.
 int Mobilificio::metodo1()
 {
     /* IMPLEMENTARE QUESTO METODO */
-    return -1;
+    if(mobili.empty())
+       return -1;
+    
+    int x = 0;
+    int contaMobili = 0;
+    for(auto it : mobili){
+        x += it.getPrezzo();
+        contaMobili++;
+    }
+    x = x/contaMobili;
+    
+    int max = 0;
+    for(auto it : mobili)
+        if((it.getPrezzo() <= x) && (it.getPrezzo() > max))
+                max = it.getPrezzo();
+    return max;
 }
 
 /*

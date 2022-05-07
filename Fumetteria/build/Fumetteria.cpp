@@ -13,7 +13,26 @@ Se non sono presenti fumetti nella fumetteria, restituire -1.
 int Fumetteria::metodo1()
 {
     /* IMPLEMENTARE QUESTO METODO */
-    return -1;
+    if(fumetteria.empty())
+        return -1;
+    int maxFumetti = 0;
+    string autoreMax;
+    for(auto i : fumetteria){
+        string corrente = i.getAutore();
+        int contaFumetti = 0;
+        for(auto j : fumetteria)
+            if(j.getAutore() == corrente)
+                contaFumetti++;
+        if(contaFumetti > maxFumetti){
+            maxFumetti = contaFumetti;
+            autoreMax = corrente;
+        }
+    }
+    int sommaPrezzi = 0;
+    for(auto p : fumetteria)
+        if(p.getAutore() == autoreMax)
+            sommaPrezzi += p.getPrezzo();
+    return sommaPrezzi;
 }
 
 /*

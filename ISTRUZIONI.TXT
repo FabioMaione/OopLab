@@ -1,0 +1,11 @@
+In ogni cartella e' presente un diverso esercizio.
+Implementare solo i metodi chiamati metodo1(), metodo2(), metodo3(), metodo4() nel corrispondente file cpp.
+
+IMPORTANTE: si possono aggiungere nuovi metodi o funzioni ma non si deve mai modificare il main o i metodi esistenti.
+Inoltre, non bisogna modificare le liste interne di ogni classe (non si puo' chiamare sort o eliminare elementi).
+
+Per eseguire i test usa
+
+  make test
+
+durante la fase di esecuzione test saranno mostrati anche gli eventuali errori di compilazione. Inoltre, il risultato sara' 1 se il metodo e' stato implementato correttamente, 0 altrimenti.

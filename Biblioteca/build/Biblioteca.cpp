@@ -13,48 +13,26 @@ Se non sono presenti libri nella biblioteca, restituire -1.
 int Biblioteca::metodo1()
 {
     /* IMPLEMENTARE QUESTO METODO */
-    if(biblioteca.empty())
+    if(biblioteca.empty()) 
         return -1;
-
-    list<string> autori;
-    for(auto it = biblioteca.begin(); it != biblioteca.end(); it++)
-        autori.push_back(it->getAutore());
-
-    set<string> found;
-    for (list<string>::iterator x = autori.begin(); x != autori.end();)
-        if (!found.insert(*x).second) 
-            x = autori.erase(x);
-        else 
-            ++x;
-
-    vector<int> numeroLibri(autori.size(), 0);
-
-    for(int i = 0; i < autori.size(); i++){
-        for(auto it2 = biblioteca.begin(); it2 != biblioteca.end(); it2++){
-            list<string>::iterator pos = autori.begin();
-            advance(pos, i);
-            string corrente = *pos;
+    string maggiore = "";
+    int max = 0;
+    for(auto it = biblioteca.begin(); it != biblioteca.end(); it++){
+        string corrente = it->getAutore(); int conta = 0;
+        for(auto it2 = biblioteca.begin(); it2 != biblioteca.end(); it2++)
             if(it2->getAutore() == corrente)
-                numeroLibri[i]++;
+                conta++;
+        if(conta > max){
+            max = conta;
+            maggiore = corrente;
         }
     }
 
-    int massimo = 0;
-    int indice = 0;
-    for(int i = 0; i < numeroLibri.size(); i++)
-        if(numeroLibri[i] > massimo){
-            massimo = numeroLibri[i];
-            indice = i;
-        }
-    list<string>::iterator posizione = autori.begin();
-    advance(posizione, indice);
-    string autoreMassimo = *posizione;
-
-    int sommaPrezzi = 0;
-    for(auto it3 = biblioteca.begin(); it3 != biblioteca.end(); it3++)
-        if(it3->getAutore() == autoreMassimo)
-            sommaPrezzi += it3->getPrezzo();
-    return sommaPrezzi;
+    int somma = 0;
+    for(auto it : biblioteca)
+        if(it.getAutore() == maggiore)
+            somma += it.getPrezzo();
+    return somma;
 }
 
 /*
